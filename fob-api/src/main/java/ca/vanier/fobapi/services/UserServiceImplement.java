@@ -2,12 +2,15 @@ package ca.vanier.fobapi.services;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import ca.vanier.fobapi.repository.UserRepository;
 import ca.vanier.systemlib.entity.User;
 
 public class UserServiceImplement implements UserService{
 
-    // @Autowired
-    // private UserRepository ur;
+    @Autowired
+    private UserRepository ur;
     
     @Override
     public User save(User s) {
