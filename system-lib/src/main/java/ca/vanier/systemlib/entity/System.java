@@ -11,12 +11,12 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class system {
+public class System {
 
     @Id
     @GeneratedValue
     private Long systemId;
-    private List<user> users;
+    private List<User> users;
     // Payment Library
     
     // ToString
