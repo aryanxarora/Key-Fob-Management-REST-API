@@ -23,7 +23,7 @@ public class SystemController {
         Response res = new Response();
 
         try{
-            // do something
+            System.out.println("/SYSTEM/SAVE");
         } catch (Exception e){
             res.setResult(e.toString());
             res.setStatus("Fail");
@@ -37,7 +37,7 @@ public class SystemController {
         Response res = new Response();
 
         try{
-            // do something
+            System.out.println("/SYSTEM/FIND");
         } catch (Exception e){
             res.setResult(e.toString());
             res.setStatus("Fail");
@@ -51,7 +51,7 @@ public class SystemController {
         Response res = new Response();
 
         try{
-            // do something
+            System.out.println("/SYSTEM/UPDATE");
         } catch (Exception e){
             res.setResult(e.toString());
             res.setStatus("Fail");
@@ -65,7 +65,7 @@ public class SystemController {
         Response res = new Response();
 
         try{
-            // do something
+            System.out.println("/SYSTEM/DELETE");
         } catch (Exception e){
             res.setResult(e.toString());
             res.setStatus("Fail");

@@ -24,7 +24,7 @@ public class FobController {
         Response res = new Response();
 
         try{
-            // do something
+            System.out.println("/FOB/SAVE");
         } catch (Exception e){
             res.setResult(e.toString());
             res.setStatus("Fail");
@@ -38,7 +38,7 @@ public class FobController {
         Response res = new Response();
 
         try{
-            // do something
+            System.out.println("/FOB/FIND");
         } catch (Exception e){
             res.setResult(e.toString());
             res.setStatus("Fail");
@@ -52,7 +52,7 @@ public class FobController {
         Response res = new Response();
 
         try{
-            // do something
+            System.out.println("/FOB/UPDATE");
         } catch (Exception e){
             res.setResult(e.toString());
             res.setStatus("Fail");
@@ -66,7 +66,7 @@ public class FobController {
         Response res = new Response();
 
         try{
-            // do something
+            System.out.println("/FOB/DELETE");
         } catch (Exception e){
             res.setResult(e.toString());
             res.setStatus("Fail");

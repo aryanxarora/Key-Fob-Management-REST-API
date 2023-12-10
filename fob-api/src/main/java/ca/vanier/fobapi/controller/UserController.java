@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ca.vanier.fobapi.services.UserService;
 
 @RestController
-@RequestMapping("/fob")
+@RequestMapping("/user")
 public class UserController {
     
     @Autowired
@@ -23,7 +23,7 @@ public class UserController {
         Response res = new Response();
 
         try{
-            // do something
+            System.out.println("/USER/SAVE");
         } catch (Exception e){
             res.setResult(e.toString());
             res.setStatus("Fail");
@@ -37,7 +37,7 @@ public class UserController {
         Response res = new Response();
 
         try{
-            // do something
+            System.out.println("/USER/FIND");
         } catch (Exception e){
             res.setResult(e.toString());
             res.setStatus("Fail");
@@ -51,7 +51,7 @@ public class UserController {
         Response res = new Response();
 
         try{
-            // do something
+            System.out.println("/USER/UPDATE");
         } catch (Exception e){
             res.setResult(e.toString());
             res.setStatus("Fail");
@@ -65,7 +65,7 @@ public class UserController {
         Response res = new Response();
 
         try{
-            // do something
+            System.out.println("/USER/DELETE");
         } catch (Exception e){
             res.setResult(e.toString());
             res.setStatus("Fail");
