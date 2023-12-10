@@ -16,20 +16,17 @@ public class SystemServiceImplement implements SystemService{
 
     @Override
     public System save(System s) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        return sr.save(s);
     }
 
     @Override
     public Optional<System> findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return sr.findById(id);
     }
 
     @Override
     public void delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        sr.deleteById(id);
     }
     
 }

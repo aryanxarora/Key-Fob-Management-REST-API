@@ -13,21 +13,18 @@ public class UserServiceImplement implements UserService{
     private UserRepository ur;
     
     @Override
-    public User save(User s) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    public User save(User u) {
+        return ur.save(u);
     }
 
     @Override
     public Optional<User> findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return ur.findById(id);
     }
 
     @Override
     public void delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        ur.deleteById(id);
     }
     
 }

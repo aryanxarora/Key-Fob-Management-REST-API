@@ -16,20 +16,17 @@ public class FobServiceImplement implements FobService{
 
     @Override
     public Fob save(Fob f) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        return fr.save(f);
     }
 
     @Override
     public Optional<Fob> findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return fr.findById(id);
     }
 
     @Override
     public void delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        fr.deleteById(id);
     }
     
 }
