@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 
 import ca.vanier.fobapi.services.FobService;
 import ca.vanier.systemlib.entity.Fob;
+import ca.vanier.fobapi.services.UserService;
+import ca.vanier.systemlib.entity.User;
 
 @RestController
 @RequestMapping("/fob")
@@ -19,6 +21,9 @@ public class FobController {
 
     @Autowired
     private FobService fs;
+
+    @Autowired
+    private UserService us;
 
     @PostMapping("/save") // Create
     public Response save(@RequestBody Fob f) {
@@ -71,6 +76,25 @@ public class FobController {
             res.setResult(found.toString() + " deleted.");
             fs.delete(found.getFobId());
             res.setStatus("200: Success");
+        } catch (Exception e){
+            res.setResult(e.toString());
+            res.setStatus("500: Fail");
+        } return res;
+    }
+
+    @PostMapping("/access")
+    public Response access(@RequestBody Fob f){
+        Response res = new Response();
+
+        try{
+            Fob fob = fs.findById(f.getFobId()).get();
+            User user = us.findById(fob.getUserId()).get();
+            if(user.isStatus()){
+                res.setResult(fob.toString() + " granted access.");
+                res.setStatus("200: Success");
+            } else {
+                throw new Exception();
+            }
         } catch (Exception e){
             res.setResult(e.toString());
             res.setStatus("500: Fail");

@@ -9,4 +9,3 @@ import ca.vanier.systemlib.entity.System;
 public interface SystemRepository extends CrudRepository<System, Long>{
     
 }
-

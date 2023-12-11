@@ -9,7 +9,7 @@ import ca.vanier.fobapi.repository.SystemRepository;
 import ca.vanier.systemlib.entity.System;
 
 @Service
-public class SystemServiceImplement implements SystemService{
+public class SystemServiceImplement implements SystemService {
 
     @Autowired
     private SystemRepository sr;
