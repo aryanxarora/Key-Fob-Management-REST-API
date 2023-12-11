@@ -89,6 +89,4 @@ public class ClientController {
             res.setStatus("500: Fail");
         } return res;
     }
-
-    // @Aryan: additional logic endpoints should be added here. Please add /assign and /deassign system (location). Make sure to check if systemId exist before assigning.
 }

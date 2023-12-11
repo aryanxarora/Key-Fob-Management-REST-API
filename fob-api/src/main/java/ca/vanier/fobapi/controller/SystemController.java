@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import ca.vanier.fobapi.services.SystemService;
 import ca.vanier.systemlib.entity.System;
 
+import java.util.List;
+import java.util.Optional;
+
 // import java.util.ArrayList;
 // import java.util.List;
 
@@ -145,5 +148,48 @@ public class SystemController {
         } return res;
     }
 
-    // @Aryan: additional logic endpoints should be added here. Please add /addClient and /removeClient. Make sure to check if clientId exist before adding or removing from system's list<id> clients.
+    @PostMapping("/addClient")
+    public Response addClient(@RequestParam Long clientID, @RequestParam Long systemID){
+        Response res = new Response();
+
+        try{
+            Optional<Client> optionalClient = cs.findById(clientID);
+            if (optionalClient.isPresent()) {
+                Client client = optionalClient.get();
+                System system = ss.findById(systemID).get();
+                List<Long> clients = system.getClients();
+                clients.add(client.getClientId());
+                system.setClients(clients);
+                ss.save(system);
+                res.setResult("Client " + client.getClientId() + " added to System " + system.toString());
+                res.setStatus("200: Success");
+            } else throw new Exception("Client Not Found");
+
+        } catch (Exception e){
+            res.setResult(e.toString());
+            res.setStatus("500: Fail");
+        } return res;
+    }
+
+    @PostMapping("/removeClient")
+    public Response removeClient(@RequestParam Long clientID, @RequestParam Long systemID){
+        Response res = new Response();
+
+        try{
+            Optional<Client> optionalClient = cs.findById(clientID);
+            if (optionalClient.isPresent()) {
+                Client client = optionalClient.get();
+                System system = ss.findById(systemID).get();
+                List<Long> clients = system.getClients();
+                clients.remove(client.getClientId());
+                system.setClients(clients);
+                ss.save(system);
+                res.setResult("Client " + client.getClientId() + " removed from " + system.toString());
+                res.setStatus("200: Success");
+            } else throw new Exception("Client Not Found");
+        } catch (Exception e){
+            res.setResult(e.toString());
+            res.setStatus("500: Fail");
+        } return res;
+    }
 }

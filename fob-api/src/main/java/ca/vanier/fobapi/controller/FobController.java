@@ -107,5 +107,38 @@ public class FobController {
         } return res;
     }
 
-    // @Aryan: additional logic endpoints should be added here. Please add /assign and /deassign client. Make sure to check if clientID exist before assigning.
+    @PostMapping("/assign")
+    public Response assign(@RequestParam Long clientID, @RequestParam Long fobID){
+        Response res = new Response();
+        try{
+            Fob fob = fs.findById(fobID).get();
+            Client client = cs.findById(clientID).get();
+            if(fob.getClientId() == null){
+                fob.setClientId(client.getClientId());
+                fs.save(fob);
+                res.setResult(client.toString() + " successfully assigned to user " + fob.toString());
+                res.setStatus("200: Success");
+            } else throw new Exception(fob.toString()  + " is already assigned to client: " + client.toString());
+        } catch (Exception e){
+            res.setResult(e.toString());
+            res.setStatus("500: Fail");
+        } return res;
+    }
+
+    @PostMapping("/deassign")
+    public Response deassign(@RequestParam Long fobID){
+        Response res = new Response();
+        try{
+            Fob fob = fs.findById(fobID).get();
+            if(fob.getClientId() != null){
+                fob.setClientId(null);
+                fs.save(fob);
+                res.setResult(fob.toString() + " successfully deassigned.");
+                res.setStatus("200: Success");
+            } else throw new Exception(fob.toString()  + " is not registered to any client.");
+        } catch (Exception e){
+            res.setResult(e.toString());
+            res.setStatus("500: Fail");
+        } return res;
+    }
 }
