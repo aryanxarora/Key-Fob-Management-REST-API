@@ -20,6 +20,11 @@ public class SystemServiceImplement implements SystemService {
     }
 
     @Override
+    public Iterable<System> findAll(){
+        return sr.findAll();
+    }
+
+    @Override
     public Optional<System> findById(Long id) {
         return sr.findById(id);
     }

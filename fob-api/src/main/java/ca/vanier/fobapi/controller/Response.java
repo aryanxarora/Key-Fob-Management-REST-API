@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class Response {
     private String status;
-    private String result;
+    private Object result;
 }

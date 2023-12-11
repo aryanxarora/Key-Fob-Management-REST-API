@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import ca.vanier.fobapi.services.SystemService;
 import ca.vanier.systemlib.entity.System;
 
-import java.util.ArrayList;
-import java.util.List;
+// import java.util.ArrayList;
+// import java.util.List;
 
 @RestController
 @RequestMapping("/system")
@@ -35,12 +35,25 @@ public class SystemController {
         } return res;
     }
 
-    @GetMapping("/find") // Read
-    public Response find(@RequestBody Long id) {
+    @GetMapping("/") // Read
+    public Response findAll(){
         Response res = new Response();
 
         try{
-            res.setResult(ss.findById(id).get().toString() + " found.");
+            res.setResult(ss.findAll());
+            res.setStatus("200: Success");
+        } catch (Exception ex){
+            res.setResult(ex.toString());
+            res.setStatus("500: Fail");
+        } return res;
+    } 
+
+    @GetMapping("/find") // Read
+    public Response find(@RequestParam Long id) {
+        Response res = new Response();
+
+        try{
+            res.setResult(ss.findById(id).get());
             res.setStatus("200: Success");
         } catch (Exception e){
             res.setResult(e.toString());
@@ -55,7 +68,7 @@ public class SystemController {
         try{
             System found = ss.findById(s.getSystemId()).get();
             ss.save(s);
-            res.setResult(found.toString() + " updated.");
+            res.setResult("System " + found.getSystemId() + " updated.");
             res.setStatus("200: Success");
         } catch (Exception e){
             res.setResult(e.toString());
@@ -64,12 +77,12 @@ public class SystemController {
     }
 
     @DeleteMapping("/delete") // Delete
-    public Response delete(@RequestBody Long id) {
+    public Response delete(@RequestParam Long id) {
         Response res = new Response();
 
         try{
             System found = ss.findById(id).get();
-            res.setResult(found.toString() + " deleted.");
+            res.setResult("System " + found.getSystemId() + " deleted.");
             ss.delete(found.getSystemId());
             res.setStatus("200: Success");
         } catch (Exception e){
@@ -78,7 +91,7 @@ public class SystemController {
         } return res;
     }
 
-    @PostMapping("/renew")
+    @PostMapping("/renew") // Logic
     public Response renew(){
         Response res = new Response();
         try{
@@ -100,7 +113,7 @@ public class SystemController {
         } return res;
     }
 
-    @PostMapping("/activate")
+    @PostMapping("/activate") // Logic
     public Response activate(@RequestParam Long id){
         Response res = new Response();
 
@@ -108,7 +121,7 @@ public class SystemController {
             Client found = cs.findById(id).get();
             found.setStatus(true);
             cs.save(found);
-            res.setResult(found.toString() + " membership activated.");
+            res.setResult("Client " + found.getClientId() + " membership activated.");
             res.setStatus("200: Success");
         } catch (Exception e){
             res.setResult(e.toString());
@@ -116,7 +129,7 @@ public class SystemController {
         } return res;
     }
 
-    @PostMapping("/deactivate")
+    @PostMapping("/deactivate") // Logic
     public Response deactivate(@RequestParam Long id){
         Response res = new Response();
 
@@ -124,11 +137,13 @@ public class SystemController {
             Client found = cs.findById(id).get();
             found.setStatus(false);
             cs.save(found);
-            res.setResult(found.toString() + " membership deactivated.");
+            res.setResult("Client " + found.getClientId() + " membership deactivated.");
             res.setStatus("200: Success");
         } catch (Exception e){
             res.setResult(e.toString());
             res.setStatus("500: Fail");
         } return res;
     }
+
+    // @Aryan: additional logic endpoints should be added here. Please add /addClient and /removeClient. Make sure to check if clientId exist before adding or removing from system's list<id> clients.
 }

@@ -17,7 +17,7 @@ public class Fob {
     @GeneratedValue
     private Long fobId;
     private Long clientId;
-    private Date expiryDate;
+    private Date expiryDate; //date will always be date-1
 
     // ToString
     @Override

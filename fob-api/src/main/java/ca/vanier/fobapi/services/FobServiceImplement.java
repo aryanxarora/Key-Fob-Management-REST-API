@@ -21,6 +21,11 @@ public class FobServiceImplement implements FobService{
     }
 
     @Override
+    public Iterable<Fob> findAll(){
+        return fr.findAll();
+    }
+
+    @Override
     public Optional<Fob> findById(Long id) {
         return fr.findById(id);
     }

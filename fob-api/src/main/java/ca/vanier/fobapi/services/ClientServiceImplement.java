@@ -1,6 +1,6 @@
 package ca.vanier.fobapi.services;
 
-import java.util.Iterator;
+// import java.util.Iterator;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +26,13 @@ public class ClientServiceImplement implements ClientService{
     }
 
     @Override
-    public Optional<Client> findById(Long id) {
-        return cr.findById(id);
+    public Iterable<Client> findAll(){
+        return cr.findAll();
     }
 
     @Override
-    public Iterable<Client> findAll(){
-        return cr.findAll();
+    public Optional<Client> findById(Long id) {
+        return cr.findById(id);
     }
 
     @Override

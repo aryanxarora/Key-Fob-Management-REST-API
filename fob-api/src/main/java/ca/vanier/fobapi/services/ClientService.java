@@ -8,9 +8,9 @@ public interface ClientService {
     Client save(Client s);
 
     void saveAll(Iterable<Client> c);
-
-    Optional<Client> findById(Long id);
-
+    
     Iterable<Client> findAll();
+    Optional<Client> findById(Long id);
+    
     void delete(Long id);
 }

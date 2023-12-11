@@ -1,0 +1,562 @@
+{
+	"info": {
+		"_postman_id": "fb24477e-c839-47e7-9139-278c892a8aa4",
+		"name": "Fob System API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30747964"
+	},
+	"item": [
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "Save",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Aryan\",\r\n    \"lastName\": \"Arora\",\r\n    \"address\": \"Rue William\",\r\n    \"postal\": \"H1A 2BC\",\r\n    \"phoneNumber\": \"(438) 802 2345\",\r\n    \"email\": \"aryan@example.com\",\r\n    \"ccNum\": \"1234 5678 9098 7654\",\r\n    \"ccExp\": \"12/27\",\r\n    \"ccCvc\": \"123\",\r\n    \"status\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/client/save",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"client",
+										"save"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find (All)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/client/?=",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"client",
+										""
+									],
+									"query": [
+										{
+											"key": "",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find (By ID)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/client/find?id=52",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"client",
+										"find"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "52"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"clientId\": 1,\r\n    \"firstName\": \"Jolson\",\r\n    \"lastName\": \"Cruz\",\r\n    \"address\": \"288 Av. Grosvenor\",\r\n    \"postal\": \"H3Z 2L9\",\r\n    \"phoneNumber\": \"(438) 802 1234\",\r\n    \"email\": \"jolson@example.com\",\r\n    \"ccNum\": \"1234 5678 9012 3456\",\r\n    \"ccExp\": \"12/27\",\r\n    \"ccCvc\": \"123\",\r\n    \"status\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/client/update",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"client",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"systemId\": 1,\r\n    \"clients\": [\"1\"]\r\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/client/delete?id=2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"client",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Logic",
+					"item": []
+				}
+			]
+		},
+		{
+			"name": "System",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "Save",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"clients\": []\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/system/save",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"system",
+										"save"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find (All)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/system/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"system",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find (By ID)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/system/find?id=1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"system",
+										"find"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"systemId\": 1602,\r\n    \"clients\": [1]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/system/update",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"system",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"systemId\": 1,\r\n    \"clients\": [\"1\"]\r\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/system/delete?id=1552",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"system",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1552"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Logic",
+					"item": [
+						{
+							"name": "Renew",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/system/renew",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"system",
+										"renew"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Activate",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/system/activate?id=52",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"system",
+										"activate"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "52"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deactivate",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/system/deactivate?id=52",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"system",
+										"deactivate"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "52"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Fob",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "Save",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"clientId\": 52,\r\n    \"expiryDate\": \"2022-01-01\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/fob/save",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"fob",
+										"save"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find (All)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/fob/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"fob",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find (By ID)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/fob/find?id=5",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"fob",
+										"find"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fobId\": 5,\r\n    \"clientId\": 1,\r\n    \"expiryDate\": \"2024-10-20\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/fob/update",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"fob",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"systemId\": 1,\r\n    \"clients\": [\"1\"]\r\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/fob/delete?id=4",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"fob",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Logic",
+					"item": [
+						{
+							"name": "Access",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/fob/access?id=5",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"fob",
+										"access"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

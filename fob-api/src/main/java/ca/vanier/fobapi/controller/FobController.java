@@ -17,7 +17,7 @@ public class FobController {
     private FobService fs;
 
     @Autowired
-    private ClientService us;
+    private ClientService cs;
 
     @PostMapping("/save") // Create
     public Response save(@RequestBody Fob f) {
@@ -33,12 +33,25 @@ public class FobController {
         } return res;
     }
 
-    @GetMapping("/find") // Read
-    public Response find(@RequestBody Long id) {
+    @GetMapping("/") // Read
+    public Response findAll(){
         Response res = new Response();
 
         try{
-            res.setResult(fs.findById(id).get().toString() + " found.");
+            res.setResult(fs.findAll());
+            res.setStatus("200: Success");
+        } catch (Exception ex){
+            res.setResult(ex.toString());
+            res.setStatus("500: Fail");
+        } return res;
+    } 
+
+    @GetMapping("/find") // Read
+    public Response find(@RequestParam Long id) {
+        Response res = new Response();
+
+        try{
+            res.setResult(fs.findById(id).get());
             res.setStatus("200: Success");
         } catch (Exception e){
             res.setResult(e.toString());
@@ -53,7 +66,7 @@ public class FobController {
         try{
             Fob found = fs.findById(f.getFobId()).get();
             fs.save(f);
-            res.setResult(found.toString() + " updated.");
+            res.setResult("Fob " + found.getFobId() + " updated.");
             res.setStatus("200: Success");
         } catch (Exception e){
             res.setResult(e.toString());
@@ -62,12 +75,12 @@ public class FobController {
     }
 
     @DeleteMapping("/delete") // Delete
-    public Response delete(@RequestBody Long id) {
+    public Response delete(@RequestParam Long id) {
         Response res = new Response();
 
         try{
             Fob found = fs.findById(id).get();
-            res.setResult(found.toString() + " deleted.");
+            res.setResult("Fob " + found.getFobId() + " deleted.");
             fs.delete(found.getFobId());
             res.setStatus("200: Success");
         } catch (Exception e){
@@ -76,22 +89,23 @@ public class FobController {
         } return res;
     }
 
-    @PostMapping("/access")
+    // @Aryan: /access endpoint should check for the fob's expiry date BEFORE checking for the Client's current access status
+    @PostMapping("/access") // Logic
     public Response access(@RequestParam Long id){
         Response res = new Response();
 
         try{
             Fob fob = fs.findById(id).get();
-            Client client = us.findById(fob.getClientId()).get();
+            Client client = cs.findById(fob.getClientId()).get();
             if(client.isStatus()){
                 res.setResult(fob.toString() + " granted access.");
                 res.setStatus("200: Success");
-            } else {
-                throw new Exception();
-            }
+            } else throw new Exception("Fob does not have access.");
         } catch (Exception e){
-            res.setResult("Fob does not have access.");
+            res.setResult(e.toString());
             res.setStatus("500: Fail");
         } return res;
     }
+
+    // @Aryan: additional logic endpoints should be added here. Please add /assign and /deassign client. Make sure to check if clientID exist before assigning.
 }
