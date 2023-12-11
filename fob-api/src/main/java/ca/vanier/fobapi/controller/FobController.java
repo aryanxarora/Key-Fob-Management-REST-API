@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 
 import ca.vanier.fobapi.services.FobService;
 import ca.vanier.systemlib.entity.Fob;
-import ca.vanier.fobapi.services.UserService;
-import ca.vanier.systemlib.entity.User;
+import ca.vanier.fobapi.services.ClientService;
+import ca.vanier.systemlib.entity.Client;
 
 @RestController
 @RequestMapping("/fob")
@@ -23,7 +23,7 @@ public class FobController {
     private FobService fs;
 
     @Autowired
-    private UserService us;
+    private ClientService us;
 
     @PostMapping("/save") // Create
     public Response save(@RequestBody Fob f) {
@@ -88,8 +88,8 @@ public class FobController {
 
         try{
             Fob fob = fs.findById(f.getFobId()).get();
-            User user = us.findById(fob.getUserId()).get();
-            if(user.isStatus()){
+            Client client = us.findById(fob.getClientId()).get();
+            if(client.isStatus()){
                 res.setResult(fob.toString() + " granted access.");
                 res.setStatus("200: Success");
             } else {

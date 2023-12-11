@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ca.vanier.fobapi.services.UserService;
-import ca.vanier.systemlib.entity.User;
+import ca.vanier.fobapi.services.ClientService;
+import ca.vanier.systemlib.entity.Client;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class ClientController {
     
     @Autowired
-    private UserService us;
+    private ClientService cs;
 
     @PostMapping("/save") // Create
-    public Response save(@RequestBody User u) {
+    public Response save(@RequestBody Client c) {
         Response res = new Response();
 
         try{
-            us.save(u);
-            res.setResult(u.toString() + " added.");
+            cs.save(c);
+            res.setResult(c.toString() + " added.");
             res.setStatus("201: Success");
         } catch (Exception e){
             res.setResult(e.toString());
@@ -38,7 +38,7 @@ public class UserController {
         Response res = new Response();
 
         try{
-            res.setResult(us.findById(id).get().toString() + " found.");
+            res.setResult(cs.findById(id).get().toString() + " found.");
             res.setStatus("200: Success");
         } catch (Exception e){
             res.setResult(e.toString());
@@ -47,12 +47,12 @@ public class UserController {
     }
 
     @PutMapping("/update") // Update
-    public Response update(@RequestBody User u) {
+    public Response update(@RequestBody Client c) {
         Response res = new Response();
 
         try{
-            User found = us.findById(u.getUserId()).get();
-            us.save(u);
+            Client found = cs.findById(c.getClientId()).get();
+            cs.save(c);
             res.setResult(found.toString() + " updated.");
             res.setStatus("200: Success");
         } catch (Exception e){
@@ -66,9 +66,9 @@ public class UserController {
         Response res = new Response();
 
         try{
-            User found = us.findById(id).get();
+            Client found = cs.findById(id).get();
             res.setResult(found.toString() + " deleted.");
-            us.delete(found.getUserId());
+            cs.delete(found.getClientId());
             res.setStatus("200: Success");
         } catch (Exception e){
             res.setResult(e.toString());

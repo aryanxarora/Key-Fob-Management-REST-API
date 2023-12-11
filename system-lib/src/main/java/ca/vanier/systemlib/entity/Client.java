@@ -9,11 +9,11 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class User {
+public class Client {
 
     @Id
     @GeneratedValue
-    private Long userId;
+    private Long clientId;
     private String firstName;
     private String lastName;
     private String address;
@@ -28,7 +28,7 @@ public class User {
     // ToString
     @Override
     public String toString() {
-        return "User [userId: " + userId + 
+        return "User [clientId: " + clientId + 
                 " | firstName: " + firstName + 
                 " | lastName: " + lastName + 
                 " | address: " + address + 

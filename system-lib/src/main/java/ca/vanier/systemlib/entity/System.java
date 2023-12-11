@@ -17,14 +17,13 @@ public class System {
     @Id
     @GeneratedValue
     private Long systemId;
-
-//    @OneToMany
-//    private List<User> users;
+    
+    private List<Long> clients;
     // Payment Library
     
     // ToString
     @Override
     public String toString() {
-        return "System [systemId: " + systemId + " | users: " + "]";
+        return "System [systemId: " + systemId + " | clients: " + "]";
     }
 }

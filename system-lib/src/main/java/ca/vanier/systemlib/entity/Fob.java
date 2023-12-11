@@ -16,12 +16,12 @@ public class Fob {
     @Id
     @GeneratedValue
     private Long fobId;
-    private Long userId;
+    private Long clientId;
     private Date expiryDate;
 
     // ToString
     @Override
     public String toString() {
-        return "Fob [fobId: " + fobId + " | userId: " + userId + " | expiryDate: " + expiryDate + "]";
+        return "Fob [fobId: " + fobId + " | clientId: " + clientId + " | expiryDate: " + expiryDate + "]";
     }
 }
