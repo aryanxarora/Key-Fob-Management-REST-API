@@ -2,8 +2,6 @@ package ca.vanier.fobapi.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import ca.vanier.fobapi.services.FobService;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+
+import ca.vanier.fobapi.services.FobService;
+import ca.vanier.systemlib.entity.Fob;
 
 @RestController
 @RequestMapping("/fob")
@@ -20,59 +21,59 @@ public class FobController {
     private FobService fs;
 
     @PostMapping("/save") // Create
-    public Response save(@RequestBody Response save) {
+    public Response save(@RequestBody Fob f) {
         Response res = new Response();
 
         try{
-            System.out.println("/FOB/SAVE");
+            fs.save(f);
+            res.setResult(f.toString() + " added.");
+            res.setStatus("201: Success");
         } catch (Exception e){
             res.setResult(e.toString());
-            res.setStatus("Fail");
-        }
-        
-        return res;
+            res.setStatus("500: Fail");
+        } return res;
     }
 
     @GetMapping("/find") // Read
-    public Response find(@RequestBody Response save) {
+    public Response find(@RequestBody Long id) {
         Response res = new Response();
 
         try{
-            System.out.println("/FOB/FIND");
+            res.setResult(fs.findById(id).get().toString() + " found.");
+            res.setStatus("200: Success");
         } catch (Exception e){
             res.setResult(e.toString());
-            res.setStatus("Fail");
-        }
-        
-        return res;
+            res.setStatus("500: Fail");
+        } return res;
     }
 
     @PutMapping("/update") // Update
-    public Response update(@RequestBody Response save) {
+    public Response update(@RequestBody Fob f) {
         Response res = new Response();
 
         try{
-            System.out.println("/FOB/UPDATE");
+            Fob found = fs.findById(f.getFobId()).get();
+            fs.save(f);
+            res.setResult(found.toString() + " updated.");
+            res.setStatus("200: Success");
         } catch (Exception e){
             res.setResult(e.toString());
-            res.setStatus("Fail");
-        }
-        
-        return res;
+            res.setStatus("500: Fail");
+        } return res;
     }
 
     @DeleteMapping("/delete") // Delete
-    public Response delete(@RequestBody Response save) {
+    public Response delete(@RequestBody Long id) {
         Response res = new Response();
 
         try{
-            System.out.println("/FOB/DELETE");
+            Fob found = fs.findById(id).get();
+            res.setResult(found.toString() + " deleted.");
+            fs.delete(found.getFobId());
+            res.setStatus("200: Success");
         } catch (Exception e){
             res.setResult(e.toString());
-            res.setStatus("Fail");
-        }
-        
-        return res;
+            res.setStatus("500: Fail");
+        } return res;
     }
-    
 }
