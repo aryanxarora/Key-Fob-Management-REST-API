@@ -1,14 +1,8 @@
 package ca.vanier.fobapi.controller;
 
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
 import ca.vanier.fobapi.services.FobService;
 import ca.vanier.systemlib.entity.Fob;
@@ -83,11 +77,11 @@ public class FobController {
     }
 
     @PostMapping("/access")
-    public Response access(@RequestBody Fob f){
+    public Response access(@RequestParam Long id){
         Response res = new Response();
 
         try{
-            Fob fob = fs.findById(f.getFobId()).get();
+            Fob fob = fs.findById(id).get();
             Client client = us.findById(fob.getClientId()).get();
             if(client.isStatus()){
                 res.setResult(fob.toString() + " granted access.");
@@ -96,7 +90,7 @@ public class FobController {
                 throw new Exception();
             }
         } catch (Exception e){
-            res.setResult(e.toString());
+            res.setResult("Fob does not have access.");
             res.setStatus("500: Fail");
         } return res;
     }

@@ -13,7 +13,7 @@ import ca.vanier.fobapi.services.ClientService;
 import ca.vanier.systemlib.entity.Client;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/client")
 public class ClientController {
     
     @Autowired
