@@ -11,9 +11,6 @@ import ca.vanier.systemlib.entity.System;
 import java.util.List;
 import java.util.Optional;
 
-// import java.util.ArrayList;
-// import java.util.List;
-
 @RestController
 @RequestMapping("/system")
 public class SystemController {
@@ -158,11 +155,15 @@ public class SystemController {
                 Client client = optionalClient.get();
                 System system = ss.findById(systemID).get();
                 List<Long> clients = system.getClients();
-                clients.add(client.getClientId());
-                system.setClients(clients);
-                ss.save(system);
-                res.setResult("Client " + client.getClientId() + " added to System " + system.toString());
-                res.setStatus("200: Success");
+                if (clients.contains(optionalClient.get().getClientId()))
+                throw new Exception("Client is already in the system!");
+                else{
+                    clients.add(client.getClientId());
+                    system.setClients(clients);
+                    ss.save(system);
+                    res.setResult("Client " + client.getClientId() + " added to System " + system.getSystemId());
+                    res.setStatus("200: Success");
+                }
             } else throw new Exception("Client Not Found");
 
         } catch (Exception e){
@@ -181,11 +182,14 @@ public class SystemController {
                 Client client = optionalClient.get();
                 System system = ss.findById(systemID).get();
                 List<Long> clients = system.getClients();
-                clients.remove(client.getClientId());
-                system.setClients(clients);
-                ss.save(system);
-                res.setResult("Client " + client.getClientId() + " removed from " + system.toString());
-                res.setStatus("200: Success");
+                if (clients.contains(optionalClient.get().getClientId())){
+                    clients.remove(client.getClientId());
+                    system.setClients(clients);
+                    ss.save(system);
+                    res.setResult("Client " + client.getClientId() + " removed from " + system.getSystemId());
+                    res.setStatus("200: Success");
+                }
+                else throw new Exception("Client is not in the system!");
             } else throw new Exception("Client Not Found");
         } catch (Exception e){
             res.setResult(e.toString());

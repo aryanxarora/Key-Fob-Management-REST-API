@@ -89,7 +89,6 @@ public class FobController {
         } return res;
     }
 
-    // @Aryan: /access endpoint should check for the fob's expiry date BEFORE checking for the Client's current access status
     @PostMapping("/access") // Logic
     public Response access(@RequestParam Long id){
         Response res = new Response();
@@ -107,7 +106,7 @@ public class FobController {
         } return res;
     }
 
-    @PostMapping("/assign")
+    @PostMapping("/assign") // Logic
     public Response assign(@RequestParam Long clientID, @RequestParam Long fobID){
         Response res = new Response();
         try{
@@ -116,16 +115,16 @@ public class FobController {
             if(fob.getClientId() == null){
                 fob.setClientId(client.getClientId());
                 fs.save(fob);
-                res.setResult(client.toString() + " successfully assigned to user " + fob.toString());
+                res.setResult("Fob " + fob.getFobId() + " successfully assigned to client: " + client.getClientId());
                 res.setStatus("200: Success");
-            } else throw new Exception(fob.toString()  + " is already assigned to client: " + client.toString());
+            } else throw new Exception("Fob " + fob.getFobId() + " is already assigned to client: " + client.getClientId());
         } catch (Exception e){
             res.setResult(e.toString());
             res.setStatus("500: Fail");
         } return res;
     }
 
-    @PostMapping("/deassign")
+    @PostMapping("/deassign") // Logic
     public Response deassign(@RequestParam Long fobID){
         Response res = new Response();
         try{
@@ -133,9 +132,9 @@ public class FobController {
             if(fob.getClientId() != null){
                 fob.setClientId(null);
                 fs.save(fob);
-                res.setResult(fob.toString() + " successfully deassigned.");
+                res.setResult("Fob " + fob.getFobId() + " successfully deassigned.");
                 res.setStatus("200: Success");
-            } else throw new Exception(fob.toString()  + " is not registered to any client.");
+            } else throw new Exception("Fob " + fob.getFobId() + " is not registered to any client.");
         } catch (Exception e){
             res.setResult(e.toString());
             res.setStatus("500: Fail");

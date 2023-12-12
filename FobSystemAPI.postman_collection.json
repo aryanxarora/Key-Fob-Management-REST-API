@@ -19,7 +19,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"firstName\": \"Aryan\",\r\n    \"lastName\": \"Arora\",\r\n    \"address\": \"Rue William\",\r\n    \"postal\": \"H1A 2BC\",\r\n    \"phoneNumber\": \"(438) 802 2345\",\r\n    \"email\": \"aryan@example.com\",\r\n    \"ccNum\": \"1234 5678 9098 7654\",\r\n    \"ccExp\": \"12/27\",\r\n    \"ccCvc\": \"123\",\r\n    \"status\": false\r\n}",
+									"raw": "{\r\n    \"firstName\": \"Krish\",\r\n    \"lastName\": \"Arora\",\r\n    \"address\": \"Rue William\",\r\n    \"postal\": \"H1A 2BC\",\r\n    \"phoneNumber\": \"(438) 802 2345\",\r\n    \"email\": \"aryan@example.com\",\r\n    \"ccNum\": \"1234 5678 9098 7654\",\r\n    \"ccExp\": \"12/27\",\r\n    \"ccCvc\": \"123\",\r\n    \"status\": false\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -155,10 +155,6 @@
 							"response": []
 						}
 					]
-				},
-				{
-					"name": "Logic",
-					"item": []
 				}
 			]
 		},
@@ -377,6 +373,64 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Add Client",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/system/addClient?clientID=52&systemID=1602",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"system",
+										"addClient"
+									],
+									"query": [
+										{
+											"key": "clientID",
+											"value": "52"
+										},
+										{
+											"key": "systemID",
+											"value": "1602"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove Client",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/system/removeClient?clientID=52&systemID=1602",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"system",
+										"removeClient"
+									],
+									"query": [
+										{
+											"key": "clientID",
+											"value": "52"
+										},
+										{
+											"key": "systemID",
+											"value": "1602"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
@@ -395,7 +449,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"clientId\": 52,\r\n    \"expiryDate\": \"2022-01-01\"\r\n}",
+									"raw": "{\r\n    \"clientId\": null,\r\n    \"expiryDate\": \"2025-01-01\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -548,6 +602,64 @@
 										{
 											"key": "id",
 											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Assign",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/fob/assign?clientID=102&fobID=102",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"fob",
+										"assign"
+									],
+									"query": [
+										{
+											"key": "clientID",
+											"value": "102"
+										},
+										{
+											"key": "fobID",
+											"value": "102"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deassign",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/fob/deassign?clientID=102&fobID=102",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"fob",
+										"deassign"
+									],
+									"query": [
+										{
+											"key": "clientID",
+											"value": "102"
+										},
+										{
+											"key": "fobID",
+											"value": "102"
 										}
 									]
 								}
